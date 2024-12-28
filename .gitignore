@@ -1,0 +1,10 @@
+.idea
+/vendor/
+.env
+.vscode
+.env.local
+.env.production
+.env.prod
+!public/js/vendor
+composer.lock
+
