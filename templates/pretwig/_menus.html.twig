@@ -1,0 +1,22 @@
+<div class="title-bar" data-responsive-toggle="base-menu-twig" data-hide-for="medium">
+	<button class="menu-icon" type="button" data-toggle="base-menu-twig"></button>
+	<div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="base-menu-twig">
+	<div class="top-bar-left">
+		<ul class="dropdown menu" data-dropdown-menu>
+			<li class="menu-text">Lumino</li>
+			<li><a href="{{ asset('/') }}">Home</a></li>
+		</ul>
+	</div>
+	<div class="top-bar-right">
+		<ul class="dropdown menu" data-dropdown-menu>
+			{% if session().isAuthenticated() %}
+				<li><a href="{{ asset('/logout') }}">Logout</a></li>
+			{% else %}
+				<li><a href="{{ asset('/login') }}">Login</a></li>
+			{% endif %}
+		</ul>
+	</div>
+</div>

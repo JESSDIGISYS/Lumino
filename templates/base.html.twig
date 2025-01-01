@@ -1,0 +1,173 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Jessso Digital Systems ">
+	<link rel="icon" href="{{ asset('media/favicon.ico') }}" type="image/x-icon">
+	{% include 'pretwig/_stylesheet.html.twig' %}
+
+	<title>Jessop Digital Design</title>
+
+	{% include 'pretwig/_javascript.html.twig' %}
+
+</head>
+<style>
+	.header {
+		background: #3adb76;
+		border-radius: 8px;
+		justify-content: center;
+		align-content: center;
+	}
+
+	.header h1 {
+		color: yellow;
+	}
+
+	.header h3 {
+		color: black;
+	}
+
+	.header h4 {
+		color: #2C3E50;
+		font-family: "Merriweather Black", Serif, serif;
+	}
+
+	.header img {
+		width: 75%;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
+		border-radius: 8px;
+	}
+
+	@media only screen and (max-width: 39.9375em) {
+		.small-padding-image {
+			padding: 1.5rem;
+		}
+	}
+
+	.button.login {
+		background-color: green;
+		color: white;
+		border-radius: 8px;
+		font-weight: 600;
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+
+	.button.login:hover {
+		background-color: white;
+		color: green;
+	}
+
+	.button.reset {
+		background-color: gold;
+		color: black;
+		font-weight: 600;
+		border-radius: 8px;
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+
+	.button.reset:hover {
+		background-color: red;
+		color: yellow;
+	}
+
+	.button.alert {
+		border-radius: 8px;
+	}
+
+
+</style>
+<body class="hero">
+<div class="grid-container hide-for print">
+	<div class="grid-x grid-padding-x hide-for-print">
+		<div class="large-3 medium-3 small-up-1 cell hide-for-print text-center header">
+			<img src="{{ asset('/media/images/jds_digital_magic_thumbnail.webp') }}" alt="JDS Digital Magic Image" class="small-padding-image">
+		</div>
+		<div class="large-6 medium-6 small-up-1 cell hide-for-print header">
+			<h1 class="text-center hide-for-print">Jessop Digital Systems</h1>
+			<h3 class="text-center">Weaving Digital Dreams</h3>
+			<h5 class="text-center">Crafting Digital Magic</h5>
+			<h6 class="text-center">Where Web Dreams Are Delivered</h6>
+		</div>
+		<div class="large-3 medium-3 small-up-1 cell hide-for-print hide-for-small-only text-center header">
+			<img src="{{ asset('/media/images/jds_digital_magic_thumbnail.webp') }}" alt="JDS Digital Magic Image" class="small-padding-image">
+		</div>
+	</div>
+</div>
+{% if session().isAuthenticated() %}
+<div class="grid-container">
+	<div class="grid-x grid-padding-x">
+		<div class="large-12 medium-12 small-12 cell">
+			<p class="text-left" style="line-height: 50%; font-size: 69%;"><strong>Welcome (login user: name)</strong></p>
+		</div>
+	</div>
+</div>
+{% endif %}
+<!-- Breadcrumbs -->
+{% include 'pretwig/_breadcrumbs.html.twig' with {'breadcrumb': breadcrumb} %}
+
+<!-- Navigation -->
+{% include 'pretwig/_menus.html.twig' with {'session': session} %}
+<!-- Success -->
+{% if session().hasFlash('success') %}
+<div class="grid-container">
+	<div class="grid-x grid-padding-x">
+		<div class="large-12 medium-12 small-12 cell">
+			<div class="success callout text-center" data-closable>
+				<button class="close-button" aria-label="Close success" type="button" data-close>
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<ul class="no-bullet">
+					{% for message in session().getFlash('success') %}
+						<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<!-- Errors -->
+{% if session().hasFlash('error') %}
+<div class="grid-container">
+	<div class="grid-x grid-padding-x">
+		<div class="large-12 medium-12 small-12 cell">
+			<div class="alert callout text-center" data-closable>
+				<button class="close-button" aria-label="Close error" type="button" data-close>
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<ul class="no-bullet">
+					{% for message in session().getFlash('error') %}
+						<li>{{ message }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+<div class="grid-container">
+	<div class="gird-x grid-padding-x">
+		<div class="large-12 medium-12 small-12 cell">
+			{% if maintMode %}
+				{% include 'pretwig/maintenance.html.twig' %}
+			{% else %}
+			{% block main %} {% endblock %}
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% include 'pretwig/_footer.html.twig' %}
+<script>
+    $(document).foundation();
+</script>
+</body>
+</html>
+
