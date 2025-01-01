@@ -3,6 +3,9 @@
 
 // set a base path
 
+use JDS\Console\Kernel;
+use Psr\Container\ContainerInterface;
+
 define('BASE_PATH', implode('/', explode("\\", dirnae(__DIR__))));
 
 require_once BASE_PATH . '/vendor/autoload.php';
